@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AlphaBlog</title>
+    <title>Alpha Blog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +11,7 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg| %> 
-      <%= msg %> 
-    <% end %>
+    <% render 'layouts/messages' %>
     <%= yield %>
   </body>
 </html>
