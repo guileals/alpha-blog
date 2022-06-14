@@ -1,27 +1,25 @@
-<div id="page-content">
+<h2 class="text-center mt-4"><%= @article.title %></h2>
 
-  <h2 class="text-center mt-4"><%= @article.title %></h2>
-
-  <div class="container">
-      <div class="row justify-content-md-center">
-        <div class="col-8 mt-3">
-          <div class="card text-center shadow mb-5 bg-white rounded">
-            <div class="card-header fst-italic">
-              Por Guilherme Leal
-            </div>
-            <div class="card-body">
-              <div class="card-text text-start"><%= simple_format(@article.description) %></div>
-              <%= link_to 'Editar', edit_article_path(@article), class:"btn btn-outline-info" %></a>
-              <%= link_to 'Apagar', article_path(@article), class:"btn btn-outline-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :delete} %></a>
-            </div>
-            <div class="card-footer text-muted">
-              <small>Criado em <%= time_ago_in_words(@article.created_at) %>, editado em <%= time_ago_in_words(@article.updated_at) %></small>
-            </div>
+<div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-3">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header fst-italic">
+            Por Guilherme Leal
+          </div>
+          <div class="card-body">
+            <div class="card-text text-start"><%= simple_format(@article.description) %></div>
+            <%= link_to 'Editar', edit_article_path(@article), class:"btn btn-outline-info" %></a>
+            <%= link_to 'Apagar', article_path(@article), class:"btn btn-outline-danger", data: {turbo_confirm: "Are you sure?", turbo_method: :delete} %></a>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Criado em <%= time_ago_in_words(@article.created_at) %>, editado em <%= time_ago_in_words(@article.updated_at) %></small>
           </div>
         </div>
-      </div>    
-  </div>
+      </div>
+    </div>    
 </div>
+
 
 <%# <%= link_to 'Show', article_path(article) %>
 <%# <%= link_to 'Edit', edit_article_path(article) %>
