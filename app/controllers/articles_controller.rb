@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
     
     def update
         if @article.update(article_params)
-            flash[:notice] = "Article was updated successfully!"
+            flash[:notice] = "Artigo atualizado com sucesso!"
             redirect_to @article
         else
             render 'edit', status: :unprocessable_entity
@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
         # render plain: params[:article]
         @article = Article.new(article_params)
         if @article.save
-            flash[:notice] = "Article was created successfully!"
+            flash[:notice] = "Artigo criado com sucesso!"
             redirect_to @article
         else
             render 'new', status: :unprocessable_entity
