@@ -33,6 +33,7 @@ class ArticlesController < ApplicationController
     def create 
         # render plain: params[:article]
         @article = Article.new(article_params)
+        @article.user = User.first
         if @article.save
             flash[:notice] = "Artigo criado com sucesso!"
             redirect_to @article
