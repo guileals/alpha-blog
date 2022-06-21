@@ -1,0 +1,23 @@
+<div class="container">
+  <% @articles.each do |article| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-3">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header fst-italic">
+            Por <%= article.user.username if article.user %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-success"><%= article.title %></h5>
+            <div class="card-text text-start"><%= simple_format(article.description) %></div>
+            <%= link_to 'Visualizar', article_path(article), class:"btn btn-outline-success" %>
+            <%= link_to 'Editar', edit_article_path(article), class:"btn btn-outline-info" %></a>
+            <%= link_to 'Apagar', article_path(article), class:"btn btn-outline-danger", data: {turbo_confirm: "TEM CERTEZA?", turbo_method: :delete} %></a>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Criado em <%= time_ago_in_words(article.created_at) %>, editado em <%= time_ago_in_words(article.updated_at) %></small>
+          </div>
+        </div>
+      </div>
+    </div>    
+  <% end %>
+</div>
