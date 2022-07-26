@@ -16,15 +16,42 @@
                     Artigos
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "Criar novo artigo", new_article_path, class: "dropdown-item" %>
+                    <% if logged_in? %>
+                        <%= link_to "Criar novo artigo", new_article_path, class: "dropdown-item" %>
+                    <% end %> 
                     <%= link_to "Ver todos os artigos", articles_path, class: "dropdown-item" %>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Sobre</a></li>
                 </ul>
             </li>
-            <%# <li class="nav-item"> %>
-                <%# <a class="nav-link disabled">Disabled</a> %>
-            <%# </li> %>
+
+            <% if logged_in? %>
+                <%# <li class="nav-item">
+                    <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+                <%# </li> %>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fw-bolder" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    [<%= current_user.username %>] <%= "(ADMIN)" if current_user.admin? %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "Ver perfil", user_path(current_user), class: "dropdown-item" %>
+                    <%= link_to "Editar perfil", edit_user_path(current_user), class: "dropdown-item" %>
+                    <%= link_to "Apagar perfil", user_path(current_user), class: "dropdown-item text-danger", data: {turbo_confirm: "TEM CERTEZA?", turbo_method: :delete} %>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Sobre</a></li>
+                </ul>
+            </li>
+                <li class="nav-item">
+                    <%= link_to "Log Out", logout_path, class: "nav-link", data: {turbo_confirm: "TEM CERTEZA?", turbo_method: :delete} %>
+                </li>
+            <% else %>
+                <li class="nav-item">
+                    <%= link_to "Log In", login_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Inscrever", signup_path, class: "nav-link" %>
+                </li>
+            <% end %>
         </ul>
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
